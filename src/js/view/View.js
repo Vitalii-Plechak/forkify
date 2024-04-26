@@ -10,7 +10,7 @@ export default class View {
    *
    * @param {Object | Object[]} data
    * @param {boolean} [render=true] Determines whether to render the content or just simply return it
-   * @returns {undefined|string}
+   * @returns {void|string}
    * @this {Object} View instance
    */
   render(data, render = true) {

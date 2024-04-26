@@ -1,6 +1,3 @@
-// API https://forkify-api.herokuapp.com/v2
-
-///////////////////////////////////////
 import { MODAL_CLOSE_TIME } from "./config";
 import * as model from './model.js';
 import RecipeView from "./view/recipeView.js";
@@ -67,6 +64,9 @@ const controlSearchResults = async function() {
     
     // 3) Render pagination
     PaginationView.render(model.state.search);
+    
+    // 4) Open search result section on mobile
+    if (window.innerWidth < 980) ResultView.toggleRecipeSearchResult(true);
   } catch (err) {
     console.error(err);
   }

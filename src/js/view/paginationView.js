@@ -57,7 +57,7 @@ class PaginationView extends View {
    */
   _generatePrevButton(page) {
     return `
-      <button data-goto="${page}" class="btn--inline pagination__btn--prev">
+      <button data-goto="${page}" class="btn--inline pagination__btn--prev" role="button">
         <svg class="search__icon">
           <use href="${icons}#icon-arrow-left"></use>
         </svg>
@@ -75,7 +75,7 @@ class PaginationView extends View {
    */
   _generateNextButton(page) {
    return `
-      <button data-goto="${page}" class="btn--inline pagination__btn--next">
+      <button data-goto="${page}" class="btn--inline pagination__btn--next" role="button">
         <span>Page ${page}</span>
         <svg class="search__icon">
           <use href="${icons}#icon-arrow-right"></use>

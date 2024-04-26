@@ -1,4 +1,4 @@
-import { TIMEOUT_SEC } from './config.js';
+import { TIMEOUT_SEC } from '../config.js';
 
 /**
  * Throw timeout error

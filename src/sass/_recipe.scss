@@ -1,12 +1,12 @@
 .recipe {
   background-color: $color-grey-light-1;
+  overflow-y: auto;
 
   ///////////
   // FIGURE
   &__fig {
     height: 32rem;
     position: relative;
-    // transform: scale(1.04) translateY(-1px);
     transform-origin: top;
 
     &::before {
@@ -22,7 +22,7 @@
         $color-grad-1,
         $color-grad-2
       );
-      opacity: 0.6;
+      opacity: .6;
     }
   }
 
@@ -42,7 +42,7 @@
     font-weight: 700;
     font-size: 3.25rem;
     text-transform: uppercase;
-    width: 50%;
+    width: 70%;
     line-height: 1.95;
     text-align: center;
 
@@ -57,8 +57,8 @@
       );
     }
 
-    @media only screen and (max-width: $bp-medium) {
-      width: 70%;
+    @media only screen and (min-width: $bp-medium) {
+      width: 50%;
     }
   }
 
@@ -67,7 +67,12 @@
   &__details {
     display: flex;
     align-items: center;
-    padding: 7.5rem 8rem 3.5rem 8rem;
+    gap: 3rem;
+    padding: 7.5rem 3rem 3.5rem 3rem;
+
+    @media only screen and (min-width: $bp-medium) {
+      padding: 7.5rem 8rem 3.5rem 8rem;
+    }
   }
 
   &__info {
@@ -76,8 +81,12 @@
     display: flex;
     align-items: center;
 
-    &:not(:last-child) {
-      margin-right: 4.5rem;
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      flex-grow: 1;
+      gap: 3rem;
     }
   }
 
@@ -89,7 +98,7 @@
   }
 
   &__info-data {
-    margin-right: 0.5rem;
+    margin-right: .5rem;
     font-weight: 700;
   }
 
@@ -101,16 +110,14 @@
 
   &__user-generated {
     background-color: darken($color-grey-light-2, 2%);
-
     display: flex;
+    grid-row: 2 span / 2;
+    grid-column: 2;
     align-items: center;
     justify-content: center;
-    height: 4rem;
-    width: 4rem;
+    width: 4.5rem;
+    height: 4.5rem;
     border-radius: 10rem;
-
-    margin-left: auto;
-    margin-right: 1.75rem;
 
     svg {
       height: 2.25rem;
@@ -122,13 +129,17 @@
   ///////////
   // INGREDIENTS
   &__ingredients {
-    padding: 5rem 8rem;
+    padding: 4rem 3rem;
     font-size: 1.6rem;
     line-height: 1.4;
     background-color: $color-grey-light-2;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media only screen and (min-width: $bp-medium) {
+      padding: 5rem 8rem;
+    }
   }
 
   &__ingredient-list {
@@ -148,11 +159,11 @@
     fill: $color-primary;
     margin-right: 1.1rem;
     flex: 0 0 auto;
-    margin-top: 0.1rem;
+    margin-top: .1rem;
   }
 
   &__quantity {
-    margin-right: 0.5rem;
+    margin-right: .5rem;
     flex: 0 0 auto;
   }
 

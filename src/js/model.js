@@ -1,6 +1,9 @@
 import {API_URL, API_KEY, RESULTS_PER_PAGE, BOOKMARKS_STORAGE_KEY} from './config.js';
-import { getJSON, sendJSON } from './helpers.js';
+import { getJSON, sendJSON } from './helper/helpers.js';
 
+/**
+ * @type {{bookmarks: *[], search: {resultsPerPage: number, query: string, page: number, results: *[]}, recipe: {}}}
+ */
 export const state = {
   recipe: {},
   search: {

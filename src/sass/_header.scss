@@ -4,34 +4,66 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
+  padding: 0 2rem;
+  z-index: 2;
 
   &__logo {
-    margin-left: 4rem;
     height: 4.6rem;
     display: block;
+
+    &-wrapper {
+      flex-grow: 1;
+    }
+  }
+
+  @media only screen and (min-width: $bp-medium) {
+    &__logo-wrapper {
+      flex-grow: 0;
+    }
   }
 }
 
 .search {
-  background-color: #fff;
+  position: relative;
   border-radius: 10rem;
   display: flex;
   align-items: center;
-  padding-left: 3rem;
-  transition: all 0.3s;
+  transition: transform .3s, box-shadow .3s;
 
-  &:focus-within {
-    transform: translateY(-2px);
-    box-shadow: 0 0.7rem 3rem rgba($color-grey-dark-1, 0.08);
+  @media only screen and (min-width: $bp-medium) {
+    background-color: #fff;
+
+    &:focus-within {
+      transform: translateY(-2px);
+      box-shadow: 0 .7rem 3rem rgba($color-grey-dark-1, .08);
+    }
   }
 
   &__field {
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    width: 100vw;
+    padding: 2.7rem;
+    box-shadow: 0 4rem 4rem 0 rgba(0,0,0,.35);
     border: none;
-    background: none;
+    background: #fff;
     font-family: inherit;
     color: inherit;
     font-size: 1.7rem;
-    width: 30rem;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-1rem);
+    transition-duration: .3s;
+    transition-property: visibility, opacity, transform;
+
+    &.active {
+      display: block;
+      visibility: visible;
+      transform: translateY(0);
+      opacity: 1;
+    }
 
     &:focus {
       outline: none;
@@ -41,29 +73,58 @@
       color: $color-grey-light-3;
     }
 
-    @media only screen and (max-width: $bp-medium) {
-      width: auto;
-
-      &::placeholder {
-        color: white;
-      }
+    @media only screen and (min-width: $bp-medium) {
+      display: block;
+      background: none;
+      box-shadow: none;
+      position: static;
+      width: 30rem;
+      padding: 0 0 0 1.5rem;
+      border-radius: 0;
+      top: unset;
+      left: unset;
+      transform: unset;
+      visibility: visible;
+      opacity: 1;
     }
   }
 
   &__btn {
+    padding: 1rem;
     font-weight: 600;
     font-family: inherit;
+
+    @media only screen and (min-width: $bp-medium) {
+      padding: 1.5rem 4rem;
+    }
+
+    > :first-child {
+      margin-right: 0;
+
+      @media only screen and (min-width: $bp-medium) {
+        margin-right: 1rem;
+      }
+    }
+
+    span {
+      display: none;
+
+      @media only screen and (min-width: $bp-medium) {
+        display: block;
+      }
+    }
   }
 }
 
 .nav {
   align-self: stretch;
-  margin-right: 2.5rem;
 
   &__list {
     list-style: none;
     display: flex;
+    align-items: center;
     height: 100%;
+    gap: 1.5rem;
   }
 
   &__item {
@@ -71,7 +132,7 @@
   }
 
   &__btn {
-    height: 100%;
+    padding: 1rem 0;
     font-family: inherit;
     color: inherit;
     font-size: 1.4rem;
@@ -80,43 +141,47 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0 1.5rem;
-    transition: all 0.3s;
-
     display: flex;
     align-items: center;
 
-    svg {
-      height: 2.4rem;
-      width: 2.4rem;
-      fill: $color-primary;
-      margin-right: 0.7rem;
-      transform: translateY(-1px);
-    }
-
-    &:focus {
-      outline: none;
-    }
-
     &:hover {
-      background-color: $color-grey-light-2;
+      transform: scale(1.05);
+    }
+
+    span {
+      display: none;
+
+      @media only screen and (min-width: $bp-medium) {
+        display: block;
+        padding-left: .5rem;
+      }
+    }
+
+    svg {
+      height: 3rem;
+      width: 3rem;
+      fill: $color-primary;
+
+      @media only screen and (min-width: $bp-medium) {
+        height: 2.4rem;
+        width: 2.4rem;
+      }
     }
   }
 }
 
 .bookmarks {
-  padding: 1rem 0;
+  padding: 1rem;
   position: absolute;
-  // right: 0;
-  right: -2.5rem;
+  right: -2rem;
   z-index: 10;
   width: 40rem;
   background-color: #fff;
-  box-shadow: 0 0.8rem 5rem 2rem rgba($color-grey-dark-1, 0.1);
-
+  box-shadow: 0 .8rem 5rem 2rem rgba($color-grey-dark-1, .1);
   visibility: hidden;
   opacity: 0;
-  transition: all 0.5s 0.2s;
+  transition: .5s .2s;
+  transition-property: visibility, opacity;
 
   &__list {
     list-style: none;
@@ -124,12 +189,11 @@
 
   &__field {
     cursor: pointer;
-    padding: 0 4rem;
-
+    padding: 0 3rem;
     display: flex;
     align-items: center;
     height: 100%;
-    transition: all 0.3s;
+    transition: background-color .3s;
 
     &:hover {
       background-color: $color-grey-light-2;
@@ -137,7 +201,7 @@
   }
 
   &:hover,
-  .nav__btn--bookmarks:hover + & {
+  .nav__btn--bookmarks.active + & {
     visibility: visible;
     opacity: 1;
   }

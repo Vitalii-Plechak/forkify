@@ -1,24 +1,35 @@
+$recipe-window-y-padding: 6rem;
+
 .add-recipe-window {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100rem;
-  background-color: white;
+  max-width: 100rem;
+  width: calc(100% - 4rem);
+  max-height: 90vh;
+  background-color: #fff;
   border-radius: 9px;
+  padding: 5rem $recipe-window-y-padding;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, .25);
+  z-index: 10;
 
-  padding: 5rem 6rem;
-  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.25);
-  z-index: 1000;
-  transition: all 0.5s;
+  @supports (max-height: 90dvh) {
+    max-height: 90dvh;
+  }
+
+  @media only screen and (min-width: $bp-medium) {
+    max-height: none;
+  }
 
   .btn--close-modal {
     font-family: inherit;
     color: inherit;
     position: absolute;
-    top: 0.5rem;
+    top: 2rem;
     right: 1.6rem;
     font-size: 3.5rem;
+    line-height: 2.5rem;
     cursor: pointer;
     border: none;
     background: none;
@@ -31,10 +42,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, .4);
   backdrop-filter: blur(4px);
-  z-index: 100;
-  transition: all 0.5s;
+  z-index: 9;
+  transition: opacity .5s, visibility .5s;
 }
 
 .hidden {
@@ -44,9 +55,18 @@
 
 .upload {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: repeat(3, auto);
-  gap: 4rem 6rem;
+  gap: 2rem 3rem;
+  height: calc(90vh - $recipe-window-y-padding * 2);
+
+  @supports (max-height: 90dvh) {
+    height: calc(90dvh - $recipe-window-y-padding * 2);
+  }
+
+  @media only screen and (min-width: $bp-medium) {
+    height: auto;
+  }
 
   .message,
   .spinner {
@@ -62,6 +82,18 @@
     align-items: center;
     gap: 1.5rem;
 
+    &-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      overflow-y: auto;
+
+      @media only screen and (min-width: $bp-medium) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4rem;
+      }
+    }
+
     & label {
       font-size: 1.5rem;
       font-weight: 600;
@@ -70,10 +102,10 @@
 
     & input {
       font-size: 1.5rem;
-      padding: 0.8rem 1rem;
+      padding: .8rem 1rem;
       border: 1px solid #ddd;
-      border-radius: 0.5rem;
-      transition: all 0.2s;
+      border-radius: .5rem;
+      transition: border .2s, background-color .2s;
 
       &::placeholder {
         color: $color-grey-light-3;
@@ -105,5 +137,11 @@
   &__btn {
     grid-column: 1 / -1;
     justify-self: center;
+  }
+
+  @media only screen and (min-width: $bp-medium) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 4rem 6rem;
   }
 }

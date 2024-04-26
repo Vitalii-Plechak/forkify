@@ -7,18 +7,30 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: all 0.2s;
+  transition: color .2s, transform .2s, outline .2s;
 
   &:hover {
     transform: scale(1.05);
   }
 
-  &:focus {
-    outline: none;
-  }
-
   & > *:first-child {
     margin-right: 1rem;
+  }
+
+  &:focus-visible {
+    outline: #000 solid 2px;
+    outline-offset: 4px;
+  }
+}
+
+button,
+a {
+  transition-duration: .2s;
+  transition-property: color, outline, outline-offset, transform;
+
+  &:focus-visible {
+    outline: #000 solid 2px;
+    outline-offset: 4px;
   }
 }
 
@@ -61,32 +73,26 @@
   font-weight: 600;
   border: none;
   background-color: $color-grey-light-1;
-  padding: 0.8rem 1.2rem;
+  padding: .8rem 1.2rem;
   border-radius: 10rem;
   cursor: pointer;
-
   display: flex;
   align-items: center;
-  transition: all 0.2s;
 
   svg {
     height: 1.6rem;
     width: 1.6rem;
     fill: currentColor;
-    margin: 0 0.2rem;
+    margin: 0 .2rem;
   }
 
   span {
-    margin: 0 0.4rem;
+    margin: 0 .4rem;
   }
 
   &:hover {
     color: $color-grad-2;
     background-color: $color-grey-light-2;
-  }
-
-  &:focus {
-    outline: none;
   }
 }
 
@@ -97,19 +103,12 @@
   cursor: pointer;
   height: 4.5rem;
   width: 4.5rem;
-  // margin-left: auto;
-  transition: all 0.2s;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
   &:hover {
     transform: scale(1.07);
-  }
-
-  &:focus {
-    outline: none;
   }
 
   svg {
@@ -120,6 +119,7 @@
 }
 
 .btn--tiny {
+  border-radius: 50%;
   height: 2rem;
   width: 2rem;
   border: none;
@@ -130,11 +130,7 @@
     height: 100%;
     width: 100%;
     fill: $color-primary;
-    transition: all 0.3s;
-  }
-
-  &:focus {
-    outline: none;
+    transition: fill .3s, transform;
   }
 
   &:hover svg {
@@ -148,7 +144,58 @@
   }
 
   &:not(:last-child) {
-    margin-right: 0.3rem;
+    margin-right: .3rem;
+  }
+}
+
+.btn--menu {
+  background-color: transparent;
+  border: none;
+  height: 22px;
+  width: 28px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+
+  span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    border-radius: 10px;
+    background: $color-grey-dark-1;
+    z-index: 3;
+
+    &:first-child {
+      transform-origin: 3px 6px;
+      transition: transform .4s ease-in-out;
+    }
+
+    &:nth-child(2) {
+      transition: transform .2s ease-in-out;
+    }
+
+    &:last-child {
+      transform-origin: 2 -3px;
+      transition: transform .4s ease-in-out;
+    }
+  }
+
+  &.active {
+    span {
+      &:first-child {
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        transform: scaleY(0);
+      }
+
+      &:last-child {
+        transform: rotate(-45deg);
+      }
+    }
   }
 }
 
@@ -159,7 +206,6 @@
   text-transform: uppercase;
   margin-bottom: 2.5rem;
   text-align: center;
-  // transform: skewY(-3deg);
 }
 
 .link:link,
@@ -191,23 +237,42 @@
 
 .message,
 .error {
-  max-width: 40rem;
+  max-width: 60rem;
   margin: 0 auto;
-  padding: 5rem 4rem;
-
+  padding: 5rem 2rem;
   display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media only screen and (min-width: $bp-medium) {
+    max-width: 40rem;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+  }
 
   svg {
-    height: 3rem;
-    width: 3rem;
+    height: 3.5rem;
+    width: 3.5rem;
     fill: $color-primary;
-    transform: translateY(-0.3rem);
+    transform: translateY(-.3rem);
+
+    @media only screen and (min-width: $bp-medium) {
+      height: 3rem;
+      width: 3rem;
+    }
   }
 
   p {
     margin-left: 1.5rem;
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     line-height: 1.5;
     font-weight: 600;
+
+    @media only screen and (min-width: $bp-medium) {
+      font-size: 1.8rem;
+    }
   }
 }

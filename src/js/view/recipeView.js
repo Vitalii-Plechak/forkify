@@ -1,10 +1,8 @@
 import View from './View.js'
 import icons from 'url:../../img/icons.svg';
 import fracty from "fracty";
+import { focusableElements } from "../helper/focusTrapHelper.js";
 
-/**
- * Recipe view class
- */
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
   _errorMessage = 'We couldn\'t find that recipe. Please try another one!';
@@ -29,11 +27,21 @@ class RecipeView extends View {
     })
   }
   
+  /**
+   * @param {Function} handler
+   */
   addHandlerManageBookmark(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--bookmark');
       if (btn) handler();
     })
+  }
+  
+  /**
+   * Trap focus to the first focusable element of the recipe view
+   */
+  trapFocusToRecipeView() {
+    focusableElements(this._parentElement)?.[0]?.focus();
   }
   
   /**
@@ -51,40 +59,42 @@ class RecipeView extends View {
       </figure>
 
       <div class="recipe__details">
-        <div class="recipe__info">
-          <svg class="recipe__info-icon">
-            <use href="${icons}#icon-clock"></use>
-          </svg>
-          <span class="recipe__info-data recipe__info-data--minutes">${this._data.cookingTime}</span>
-          <span class="recipe__info-text">minutes</span>
-        </div>
-        <div class="recipe__info">
-          <svg class="recipe__info-icon">
-            <use href="${icons}#icon-users"></use>
-          </svg>
-          <span class="recipe__info-data recipe__info-data--people">${this._data.servings}</span>
-          <span class="recipe__info-text">servings</span>
-
-          <div class="recipe__info-buttons">
-            <button class="btn--tiny btn--update-servings" data-update-to="${this._data.servings - 1}">
-              <svg>
-                <use href="${icons}#icon-minus-circle"></use>
-              </svg>
-            </button>
-            <button class="btn--tiny btn--update-servings" data-update-to="${this._data.servings + 1}">
-              <svg>
-                <use href="${icons}#icon-plus-circle"></use>
-              </svg>
-            </button>
+        <div class="recipe__info-wrapper">
+          <div class="recipe__info">
+            <svg class="recipe__info-icon">
+              <use href="${icons}#icon-clock"></use>
+            </svg>
+            <span class="recipe__info-data recipe__info-data--minutes">${this._data.cookingTime}</span>
+            <span class="recipe__info-text">minutes</span>
+          </div>
+          <div class="recipe__info">
+            <svg class="recipe__info-icon">
+              <use href="${icons}#icon-users"></use>
+            </svg>
+            <span class="recipe__info-data recipe__info-data--people">${this._data.servings}</span>
+            <span class="recipe__info-text">servings</span>
+  
+            <div class="recipe__info-buttons">
+              <button class="btn--tiny btn--update-servings" data-update-to="${this._data.servings - 1}" role="button">
+                <svg>
+                  <use href="${icons}#icon-minus-circle"></use>
+                </svg>
+              </button>
+              <button class="btn--tiny btn--update-servings" data-update-to="${this._data.servings + 1}" role="button">
+                <svg>
+                  <use href="${icons}#icon-plus-circle"></use>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
-        <div class="recipe__user-generated ${this._data.key ? '' : 'hidden'}">
+        <div class="recipe__user-generated ${this._data.key ? '' : 'sr-only'}">
           <svg>
             <use href="${icons}#icon-user"></use>
           </svg>
         </div>
-        <button class="btn--round btn--bookmark">
+        <button class="btn--round btn--bookmark" role="button">
           <svg>
             <use href="${icons}#icon-bookmark${this._data.bookmarked ? '-fill' : ''}"></use>
           </svg>
