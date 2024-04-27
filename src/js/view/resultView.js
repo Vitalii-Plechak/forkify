@@ -1,6 +1,7 @@
 import View from "./View.js";
 import PreviewView from "./previewView.js";
 import RecipeView from "./recipeView.js";
+import { MOBILE_EDGE } from "../config.js";
 
 class ResultView extends View {
   _parentElement = document.querySelector('.results');
@@ -53,6 +54,8 @@ class ResultView extends View {
      *  Toggle recipe search result section active class and aria-hidden attribute value
      */
     const toggleRecipeSearchResultSection = () => {
+      if (window.innerWidth >= MOBILE_EDGE) return;
+      
       if (forceOpen) {
         self._searchResultsTrigger.classList.add(activeClass);
         self._parentElement.parentElement.classList.add(activeClass);
@@ -77,7 +80,7 @@ class ResultView extends View {
     window.addEventListener('hashchange', () => this.toggleRecipeSearchResult(false, true));
     
     // Toggle accessibility attributes based on screen width
-    const mql = window.matchMedia(`(min-width: 980px)`);
+    const mql = window.matchMedia(`(min-width: ${MOBILE_EDGE}px)`);
     self._parentElement.parentElement.setAttribute('aria-modal', !mql.matches);
     !mql.matches && self._parentElement.parentElement.setAttribute('aria-hidden', 'true');
     
@@ -99,7 +102,7 @@ class ResultView extends View {
     
     this._skipToRecipe.addEventListener('click', () => {
       RecipeView.trapFocusToRecipeView.call(RecipeView);
-      if (window.innerWidth < 980) this.toggleRecipeSearchResult(false, true);
+      if (window.innerWidth < MOBILE_EDGE) this.toggleRecipeSearchResult(false, true);
     });
   }
 }

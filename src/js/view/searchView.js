@@ -1,3 +1,5 @@
+import { MOBILE_EDGE } from "../config.js";
+
 class SearchView {
   _parentElement = document.querySelector('.search');
   _searchInput = this._parentElement.querySelector('.search__field');
@@ -45,7 +47,7 @@ class SearchView {
     
     const self = this;
     const activeClass = 'active';
-    const mobileEdge = 980;
+    const mobileEdge = MOBILE_EDGE;
     
     // Toggle active class and aria-hidden attribute
     if (window.innerWidth < mobileEdge) {

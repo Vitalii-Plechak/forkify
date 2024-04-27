@@ -6,3 +6,4 @@ export const TIMEOUT_SEC = 5;
 export const RESULTS_PER_PAGE = 10
 export const BOOKMARKS_STORAGE_KEY = 'bookmarks';
 export const MODAL_CLOSE_TIME = 2.5;
+export const MOBILE_EDGE = 980;

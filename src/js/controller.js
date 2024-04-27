@@ -1,4 +1,4 @@
-import { MODAL_CLOSE_TIME } from "./config";
+import { MODAL_CLOSE_TIME, MOBILE_EDGE } from "./config";
 import * as model from './model.js';
 import RecipeView from "./view/recipeView.js";
 import SearchView from "./view/searchView.js";
@@ -66,7 +66,7 @@ const controlSearchResults = async function() {
     PaginationView.render(model.state.search);
     
     // 4) Open search result section on mobile
-    if (window.innerWidth < 980) ResultView.toggleRecipeSearchResult(true);
+    if (window.innerWidth < MOBILE_EDGE) ResultView.toggleRecipeSearchResult(true);
   } catch (err) {
     console.error(err);
   }
