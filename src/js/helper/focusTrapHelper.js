@@ -8,8 +8,6 @@ let currentTrap;
  */
 export const focusableElements = (rootElement) => {
   const selector = 'button, [href], input, select, textarea, details';
-  console.log(Array.from(rootElement.querySelectorAll(selector))
-    .filter(el => el.style.display !== 'none' && !el.disabled && el.tabIndex !== -1))
   return Array.from(rootElement.querySelectorAll(selector))
     .filter(el => el.style.display !== 'none' && !el.disabled && el.tabIndex !== -1)
 }

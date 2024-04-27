@@ -50,7 +50,17 @@ class SearchView {
     // Toggle active class and aria-hidden attribute
     if (window.innerWidth < mobileEdge) {
       self._searchInput.classList.toggle(activeClass);
-      self._searchInput.setAttribute('aria-hidden', !self._searchInput.classList.contains(activeClass));
+      
+      const isSearchInputHasActiveClass = self._searchInput.classList.contains(activeClass);
+      
+      self._searchInput.setAttribute('aria-hidden', !isSearchInputHasActiveClass);
+      
+      // Move focus to input when it has shown
+      setTimeout(() => {
+        isSearchInputHasActiveClass
+          ? self._searchInput.focus()
+          : self._searchInput.nextElementSibling.focus();
+      }, 50);
     }
     
     if (this._matchMediaAttached) return;

@@ -5,11 +5,13 @@
   width: 100vw;
   background: #fff;
   transform: translateX(-100%);
-  transition: transform .3s;
+  transition-duration: .3s;
+  transition-property: transform, visibility;
   padding-bottom: 3rem;
   display: flex;
   flex-direction: column;
   z-index: 1;
+  visibility: hidden;
 
   &::after {
     content: '';
@@ -26,6 +28,7 @@
 
   &.active {
     transform: translateX(0);
+    visibility: visible;
 
     &::after {
       left: 100%;
@@ -82,6 +85,7 @@
     height: auto;
     width: auto;
     transform: none;
+    visibility: visible;
 
     &::after {
       content: none;
@@ -97,7 +101,8 @@
 
 .results {
   list-style: none;
-  padding: 1rem;
+  padding: 1rem 1rem;
+  margin: 1rem 0;
   overflow-y: auto;
   flex-grow: 1;
 }
