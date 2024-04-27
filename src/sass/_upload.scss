@@ -45,7 +45,8 @@ $recipe-window-y-padding: 6rem;
   background-color: rgba(0, 0, 0, .4);
   backdrop-filter: blur(4px);
   z-index: 9;
-  transition: opacity .5s, visibility .5s;
+  transition: $transition-duration-xl;
+  transition-property: opacity, visibility;
 }
 
 .hidden {
@@ -105,7 +106,8 @@ $recipe-window-y-padding: 6rem;
       padding: .8rem 1rem;
       border: 1px solid #ddd;
       border-radius: .5rem;
-      transition: border .2s, background-color .2s;
+      transition-duration: $transition-duration-s;
+      transition-property: border, background-color;
 
       &::placeholder {
         color: $color-grey-light-3;

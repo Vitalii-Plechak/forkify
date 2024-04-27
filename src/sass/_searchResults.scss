@@ -5,7 +5,7 @@
   width: 100vw;
   background: #fff;
   transform: translateX(-100%);
-  transition-duration: .3s;
+  transition-duration: $transition-duration-m;
   transition-property: transform, visibility;
   padding-bottom: 3rem;
   display: flex;
@@ -21,7 +21,8 @@
     left: 0;
     background-color: rgba(0, 0, 0, .4);
     backdrop-filter: blur(4px);
-    transition: opacity .3s, visibility .3s;
+    transition: $transition-duration-m;
+    transition-property: opacity, visibility;
     opacity: 0;
     visibility: hidden;
   }
@@ -46,7 +47,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition-duration: .3s;
+    transition-duration: $transition-duration-s;
     transition-property: opacity, visibility, transform;
     box-shadow: 0 1rem 1rem 0 rgba(0,0,0,.15);
     padding: 1.5rem;

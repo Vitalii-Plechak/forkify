@@ -7,7 +7,8 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: color .2s, transform .2s, outline .2s;
+  transition-duration: $transition-duration-s;
+  transition-property: color, outline, transform;
 
   &:hover {
     transform: scale(1.05);
@@ -25,7 +26,7 @@
 
 button,
 a {
-  transition-duration: .2s;
+  transition-duration: $transition-duration-s;
   transition-property: color, outline, outline-offset, transform;
 
   &:focus-visible {
@@ -130,7 +131,7 @@ a {
     height: 100%;
     width: 100%;
     fill: $color-primary;
-    transition: fill .3s, transform;
+    transition: fill $transition-duration-s, transform $transition-duration-s;
   }
 
   &:hover svg {
@@ -169,16 +170,16 @@ a {
 
     &:first-child {
       transform-origin: 3px 6px;
-      transition: transform .4s ease-in-out;
+      transition: transform $transition-duration-l ease-in-out;
     }
 
     &:nth-child(2) {
-      transition: transform .2s ease-in-out;
+      transition: transform $transition-duration-s ease-in-out;
     }
 
     &:last-child {
       transform-origin: 2 -3px;
-      transition: transform .4s ease-in-out;
+      transition: transform $transition-duration-l ease-in-out;
     }
   }
 
