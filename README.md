@@ -1,5 +1,9 @@
 # WELCOME TO THE "forkify" PROJECT README
 
+![forkify-app.png](forkify-app.png)
+
+<br/>
+
 "forkify" is a recipe application with custom recipe uploads.
 
 The test website url: https://vitalii-plechak-forkify.netlify.app/
